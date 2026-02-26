@@ -1,0 +1,100 @@
+pluginManagement {
+    includeBuild('../build-conventions')
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = 'Fabric'
+                    url = uri('https://maven.fabricmc.net')
+                }
+            }
+            filter {
+                includeGroup('net.fabricmc')
+                includeGroup('net.fabricmc.unpick')
+                includeGroup('fabric-loom')
+            }
+        }
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = 'Sponge'
+                    url = uri('https://repo.spongepowered.org/repository/maven-public')
+                }
+            }
+            filter {
+                includeGroupAndSubgroups("org.spongepowered")
+            }
+        }
+        maven {
+            name = 'NeoForge'
+            url = uri('https://maven.neoforged.net/releases')
+        }
+    }
+}
+
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
+}
+
+rootProject.name = 'libwyfy'
+
+// Central repository declarations for all subprojects.
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = 'Fabric'
+                    url = uri('https://maven.fabricmc.net')
+                }
+            }
+            filter {
+                includeGroup('net.fabricmc')
+                includeGroup('net.fabricmc.unpick')
+                includeGroup('fabric-loom')
+            }
+        }
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = 'Sponge'
+                    url = uri('https://repo.spongepowered.org/repository/maven-public')
+                }
+            }
+            filter {
+                includeGroupAndSubgroups('org.spongepowered')
+            }
+        }
+        exclusiveContent {
+            forRepositories(
+                    maven {
+                        name = 'ParchmentMC'
+                        url = uri('https://maven.parchmentmc.org/')
+                    },
+                    maven {
+                        name = 'NeoForge'
+                        url = uri('https://maven.neoforged.net/releases')
+                    }
+            )
+            filter { includeGroup('org.parchmentmc.data') }
+        }
+        maven {
+            name = 'NeoForge'
+            url = uri('https://maven.neoforged.net/releases')
+        }
+        maven {
+            name = 'BlameJared'
+            url = uri('https://maven.blamejared.com')
+        }
+    }
+}
+
+include('common')
+include('fabric')
+include('neoforge')
+// forge intentionally excluded until Forge support is added

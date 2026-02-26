@@ -1,6 +1,32 @@
-plugins {
-    // see https://fabricmc.net/develop/ for new versions
-    id 'fabric-loom' version '1.13-SNAPSHOT' apply false
-    // see https://projects.neoforged.net/neoforged/moddevgradle for new versions
-    id 'net.neoforged.moddev' version '2.0.123' apply false
+// Suite-level aggregating tasks.
+// Each mod is an independent included build; tasks here delegate to them.
+
+tasks.register('buildAll') {
+    group = 'wyfy-suite'
+    description = 'Build all mods in the suite.'
+    dependsOn(
+        gradle.includedBuild('libwyfy').task(':build'),
+        gradle.includedBuild('IvaldiOS').task(':build'),
+        gradle.includedBuild('DraupnirTech').task(':build')
+    )
+}
+
+tasks.register('publishAll') {
+    group = 'wyfy-suite'
+    description = 'Publish all mods to their configured repositories.'
+    dependsOn(
+        gradle.includedBuild('libwyfy').task(':publish'),
+        gradle.includedBuild('IvaldiOS').task(':publish'),
+        gradle.includedBuild('DraupnirTech').task(':publish')
+    )
+}
+
+tasks.register('cleanAll') {
+    group = 'wyfy-suite'
+    description = 'Clean all mod build outputs.'
+    dependsOn(
+        gradle.includedBuild('libwyfy').task(':clean'),
+        gradle.includedBuild('IvaldiOS').task(':clean'),
+        gradle.includedBuild('DraupnirTech').task(':clean')
+    )
 }

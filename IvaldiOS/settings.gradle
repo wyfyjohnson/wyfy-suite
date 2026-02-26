@@ -1,0 +1,134 @@
+pluginManagement {
+    includeBuild('../build-conventions')
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = 'Fabric'
+                    url = uri('https://maven.fabricmc.net')
+                }
+            }
+            filter {
+                includeGroup('net.fabricmc')
+                includeGroup('net.fabricmc.unpick')
+                includeGroup('fabric-loom')
+            }
+        }
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = 'Sponge'
+                    url = uri('https://repo.spongepowered.org/repository/maven-public')
+                }
+            }
+            filter {
+                includeGroupAndSubgroups("org.spongepowered")
+            }
+        }
+        maven {
+            name = 'NeoForge'
+            url = uri('https://maven.neoforged.net/releases')
+        }
+    }
+}
+
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
+}
+
+rootProject.name = 'ivaldios'
+
+// Central repository declarations for all subprojects.
+// PREFER_SETTINGS ensures these repos are used even when plugins like NeoForge moddev
+// add their own project-level repositories, guaranteeing mavenLocal() is always
+// consulted for locally published libwyfy artifacts.
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = 'Fabric'
+                    url = uri('https://maven.fabricmc.net')
+                }
+            }
+            filter {
+                includeGroup('net.fabricmc')
+                includeGroup('net.fabricmc.unpick')
+                includeGroup('fabric-loom')
+            }
+        }
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = 'Sponge'
+                    url = uri('https://repo.spongepowered.org/repository/maven-public')
+                }
+            }
+            filter {
+                includeGroupAndSubgroups('org.spongepowered')
+            }
+        }
+        exclusiveContent {
+            forRepositories(
+                    maven {
+                        name = 'ParchmentMC'
+                        url = uri('https://maven.parchmentmc.org/')
+                    },
+                    maven {
+                        name = 'NeoForge'
+                        url = uri('https://maven.neoforged.net/releases')
+                    }
+            )
+            filter { includeGroup('org.parchmentmc.data') }
+        }
+        maven {
+            name = 'NeoForge'
+            url = uri('https://maven.neoforged.net/releases')
+        }
+        maven {
+            name = 'BlameJared'
+            url = uri('https://maven.blamejared.com')
+        }
+    }
+}
+
+include('common')
+include('fabric')
+include('neoforge')
+// forge intentionally excluded until Forge support is added
+
+// ---------------------------------------------------------------------------
+// Gentoo-style dev override: substitute published libwyfy with local source.
+//
+// Enable by one of:
+//   1. Command line:  ./gradlew <task> -Plibwyfy_dev=true
+//   2. Machine-wide: add libwyfy_dev=true to ~/.gradle/gradle.properties
+//   3. Per-project:  add libwyfy_dev=true to IvaldiOS/local.gradle.properties
+//                    (this file is gitignored)
+//
+// Stable mode (default): libwyfy_version pin in gradle.properties is used,
+// resolved from Maven (mavenLocal() or a remote repository).
+// ---------------------------------------------------------------------------
+def localProps = new Properties()
+def localFile = file('local.gradle.properties')
+if (localFile.exists()) {
+    localFile.withInputStream { localProps.load(it) }
+}
+// Use startParameter.projectProperties for -P flags (available at settings eval time).
+// Fall back to local.gradle.properties, then to Gradle user home properties.
+def libwyfyDevFlag = gradle.startParameter.projectProperties.get('libwyfy_dev')
+        ?: localProps.getProperty('libwyfy_dev', 'false')
+def libwyfyDev = libwyfyDevFlag == 'true'
+
+if (libwyfyDev) {
+    // In dev mode, include libwyfy as a composite build so IntelliJ can navigate
+    // libwyfy source directly from IvaldiOS. The common compile dependency still
+    // resolves from mavenLocal() (publish libwyfy first with `./gradlew publish`).
+    // Runtime substitution for loader jars is handled via localRuntime in loader build.gradle.
+    includeBuild('../libwyfy')
+}
