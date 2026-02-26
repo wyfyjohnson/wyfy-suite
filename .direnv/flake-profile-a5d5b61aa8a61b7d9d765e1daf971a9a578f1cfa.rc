@@ -39,7 +39,7 @@ NIX_CC='/nix/store/kbw2j1vag664b3sj3rjwz9v53cqx87sb-gcc-wrapper-15.2.0'
 export NIX_CC
 NIX_CC_WRAPPER_TARGET_HOST_x86_64_unknown_linux_gnu='1'
 export NIX_CC_WRAPPER_TARGET_HOST_x86_64_unknown_linux_gnu
-NIX_CFLAGS_COMPILE=' -frandom-seed=kv5c01jr8i -isystem /nix/store/2c52z0rvldik0rll2xz2ip5dl1c8f3pw-openjdk-21.0.10+7/include -isystem /nix/store/2c52z0rvldik0rll2xz2ip5dl1c8f3pw-openjdk-21.0.10+7/include'
+NIX_CFLAGS_COMPILE=' -frandom-seed=sqjzpdz7g0 -isystem /nix/store/2c52z0rvldik0rll2xz2ip5dl1c8f3pw-openjdk-21.0.10+7/include -isystem /nix/store/2c52z0rvldik0rll2xz2ip5dl1c8f3pw-openjdk-21.0.10+7/include'
 export NIX_CFLAGS_COMPILE
 NIX_ENFORCE_NO_NATIVE='1'
 export NIX_ENFORCE_NO_NATIVE
@@ -181,7 +181,6 @@ declare -a propagatedTargetDepFiles=('propagated-target-target-deps' )
 shell='/nix/store/2hjsch59amjs3nbgh7ahcfzm2bfwl8zi-bash-5.3p9/bin/bash'
 export shell
 shellHook='echo "wyfy-suite dev environment"
-echo "Java: $(java -version 2>&1 | head -1)"
 '
 export shellHook
 stdenv='/nix/store/zkiy4zv8wz3v95bj6fdmkqwql8x1vnhb-stdenv-linux'

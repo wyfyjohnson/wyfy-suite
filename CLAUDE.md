@@ -8,6 +8,7 @@ See @docs/vision.md for full project vision.
 
 - **LibWyfy** — Shared library. No gameplay content. All platform abstraction, multiblock framework, power/storage infrastructure, expression language runtime, and Ponder integration live here.
 - **IvaldiOS** — Primary content mod. Depends on LibWyfy. Registers the compute node multiblock, modules, items, and blocks.
+- **DraupnirTech** - A very arduous crafting and power generation mod.
 
 ## Project Structure
 

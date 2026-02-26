@@ -18,6 +18,7 @@ tasks.register('publishAll') {
         gradle.includedBuild('libwyfy').task(':publish'),
         gradle.includedBuild('IvaldiOS').task(':publish'),
         gradle.includedBuild('DraupnirTech').task(':publish')
+        gradle.toString
     )
 }
 

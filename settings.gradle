@@ -45,21 +45,9 @@ plugins {
 
 // This should match the folder name of the project, or else IDEA may complain (see https://youtrack.jetbrains.com/issue/IDEA-317606)
 rootProject.name = 'wyfy-suite'
-z
-// LibWyfy - shared library
-include('libwyfy:common')
-include('libwyfy:fabric')
-include('libwyfy:neoforge')
-include('libwyfy:forge')
 
-// IvaldiOS - Primary Tech Mod
-include('IvaldiOS:common')
-include('IvaldiOS:fabric')
-include('IvaldiOS:neoforge')
-include('IvaldiOS:forge')
-
-// DraupnirTech - Nuclear Tech Mod
-include('DraupnirTech:common')
-include('DraupnirTech:fabric')
-include('DraupnirTech:neoforge')
-include('DraupnirTech:forge')
+// Each mod is a standalone composite build. The root orchestrates via
+// gradle.includedBuild(...).task(':build') in build.gradle.
+includeBuild('libwyfy')
+includeBuild('IvaldiOS')
+includeBuild('DraupnirTech')
