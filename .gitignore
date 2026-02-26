@@ -22,3 +22,8 @@ build
 eclipse
 run
 runs
+
+# notes
+CLAUDE.md
+docs/
+.claude/

@@ -1,0 +1,21 @@
+plugins {
+    id 'fabric-loom' version '1.9-SNAPSHOT' apply false
+    id 'net.neoforged.moddev' version '2.0.123' apply false
+}
+
+// Aggregating tasks so the suite root can delegate to this build via
+// gradle.includedBuild('DraupnirTech').task(':build'), etc.
+tasks.register('build') {
+    group = 'build'
+    dependsOn subprojects.collect { ":${it.name}:build" }
+}
+
+tasks.register('publish') {
+    group = 'publishing'
+    dependsOn subprojects.collect { ":${it.name}:publish" }
+}
+
+tasks.register('clean') {
+    group = 'build'
+    dependsOn subprojects.collect { ":${it.name}:clean" }
+}
