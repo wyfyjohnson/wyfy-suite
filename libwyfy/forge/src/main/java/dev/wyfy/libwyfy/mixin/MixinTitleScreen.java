@@ -1,6 +1,6 @@
-package com.example.examplemod.mixin;
+package dev.wyfy.libwyfy.mixin;
 
-import com.example.examplemod.Constants;
+import dev.wyfy.libwyfy.Constants;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;

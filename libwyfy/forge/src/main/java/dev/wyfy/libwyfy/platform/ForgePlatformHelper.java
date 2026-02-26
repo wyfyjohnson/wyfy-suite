@@ -1,6 +1,6 @@
-package com.example.examplemod.platform;
+package dev.wyfy.libwyfy.platform;
 
-import com.example.examplemod.platform.services.IPlatformHelper;
+import dev.wyfy.libwyfy.platform.services.IPlatformHelper;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
 

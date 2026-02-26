@@ -1,4 +1,4 @@
-package com.example.examplemod;
+package dev.wyfy.libwyfy;
 
 import net.minecraftforge.fml.common.Mod;
 

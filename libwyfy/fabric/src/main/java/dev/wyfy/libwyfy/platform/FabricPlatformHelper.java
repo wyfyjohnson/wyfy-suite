@@ -1,6 +1,6 @@
 package dev.wyfy.libwyfy.platform;
 
-import com.example.examplemod.platform.services.IPlatformHelper;
+import dev.wyfy.libwyfy.platform.services.IPlatformHelper;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class FabricPlatformHelper implements IPlatformHelper {

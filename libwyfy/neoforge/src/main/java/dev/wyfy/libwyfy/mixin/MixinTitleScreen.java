@@ -1,6 +1,6 @@
-package com.example.examplemod.mixin;
+package dev.wyfy.libwyfy.mixin;
 
-import com.example.examplemod.Constants;
+import dev.wyfy.libwyfy.LibWyfy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,8 +13,12 @@ public class MixinTitleScreen {
 
     @Inject(at = @At("HEAD"), method = "init()V")
     private void init(CallbackInfo info) {
-
-        Constants.LOG.info("This line is printed by an example mod mixin from NeoForge!");
-        Constants.LOG.info("MC Version: {}", Minecraft.getInstance().getVersionType());
+        LibWyfy.LOG.info(
+            "This line is printed by an example mod mixin from NeoForge!"
+        );
+        LibWyfy.LOG.info(
+            "MC Version: {}",
+            Minecraft.getInstance().getVersionType()
+        );
     }
 }
