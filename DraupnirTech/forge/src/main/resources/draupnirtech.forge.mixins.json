@@ -1,16 +1,12 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.example.examplemod.mixin",
-  "refmap": "${mod_id}.refmap.json",
+  "package": "dev.wyfy.draupnirtech.mixin",
   "compatibilityLevel": "JAVA_18",
   "mixins": [],
-  "client": [
-    "MixinMinecraft"
-  ],
+  "client": ["MixinTitleScreen"],
   "server": [],
   "injectors": {
     "defaultRequire": 1
   }
 }
-
