@@ -1,32 +1,256 @@
-# MultiLoader Template
+# Wyfy Suite
 
-This project provides a Gradle project template that can compile Minecraft mods for multiple modloaders using a common project for the sources. This project does not require any third party libraries or dependencies. If you have any questions or want to discuss the project, please join our [Discord](https://discord.myceliummod.network).
+## 🎯 Vision
 
-## Getting Started
+The Wyfy Suite transforms Minecraft automation from imperative "how" to declarative "what" - inspired by NixOS philosophy. Instead of building complex redstone circuits and mechanical contraptions, players write simple expressions that describe their desired outcomes.
 
-### IntelliJ IDEA
-This guide will show how to import the MultiLoader Template into IntelliJ IDEA. The setup process is roughly equivalent to setting up the modloaders independently and should be very familiar to anyone who has worked with their MDKs.
+## 📦 Architecture
 
-1. Clone or download this repository to your computer.
-2. Configure the project by setting the properties in the `gradle.properties` file. You will also need to change the `rootProject.name`  property in `settings.gradle`, this should match the folder name of your project, or else IDEA may complain.
-3. Open the template's root folder as a new project in IDEA. This is the folder that contains this README.md file and the gradlew executable.
-4. If your default JVM/JDK is not Java 21 you will encounter an error when opening the project. This error is fixed by going to `File > Settings > Build, Execution, Deployment > Build Tools > Gradle > Gradle JVM` and changing the value to a valid Java 21 JVM. You will also need to set the Project SDK to Java 21. This can be done by going to `File > Project Structure > Project SDK`. Once both have been set open the Gradle tab in IDEA and click the refresh button to reload the project.
-5. Open your Run/Debug Configurations. Under the `Application` category there should now be options to run Fabric and NeoForge projects. Select one of the client options and try to run it.
-6. Assuming you were able to run the game in step 5 your workspace should now be set up.
+### **LibWyfy** - Core Framework
+*The foundation library powering all Wyfy mods*
 
-### Eclipse
-While it is possible to use this template in Eclipse it is not recommended. During the development of this template multiple critical bugs and quirks related to Eclipse were found at nearly every level of the required build tools. While we continue to work with these tools to report and resolve issues support for projects like these are not there yet. For now Eclipse is considered unsupported by this project. The development cycle for build tools is notoriously slow so there are no ETAs available.
+**Key Features:**
+- **Energy System**: A non RF/FE energy system with Create integrations
+- **Expression Language**: Declarative code for automation/building/storage/infrastructure
+- **Multiblock Framework**: A powerful scalable option to fulfill numerous needs
+- **Platform Abstraction**: Cross-platform compatibility (Fabric/NeoForge/Forge)
 
-## Development Guide
-When using this template the majority of your mod should be developed in the `common` project. The `common` project is compiled against the vanilla game and is used to hold code that is shared between the different loader-specific versions of your mod. The `common` project has no knowledge or access to ModLoader specific code, apis, or concepts. Code that requires something from a specific loader must be done through the project that is specific to that loader, such as the `fabric` or `neoforge` projects.
+**Energy Conversion/Logic:**
+```
+Available WE = Total SU × Conversion Rate
+Machine Speed = Base Performance(voltage) × RPM
+```
 
-Loader specific projects such as the `fabric` and `neoforge` project are used to load the `common` project into the game. These projects also define code that is specific to that loader. Loader specific projects can access all the code in the `common` project. It is important to remember that the `common` project can not access code from loader specific projects.
+### **IvaldiOS** - Smart Automation
+*The main automation mod with intelligent power management*
 
-## Removing Platforms and Loaders
-While this template has support for many modloaders, new loaders may appear in the future, and existing loaders may become less relevant.
+**Revolutionary Power Control:**
+- **Software Overclocking**: Adjust machine speed through configuration, not mechanical builds
+- **Dynamic SU Consumption**: Higher performance = higher stress unit usage
+- **No Gear Ratio Requirements**: Speed control without complex mechanical engineering
 
-Removing loader specific projects is as easy as deleting the folder, and removing the `include("projectname")` line from the `settings.gradle` file.
-For example if you wanted to remove support for `forge` you would follow the following steps:
+**Example: Advanced Smeltery**
+```yaml
+# Traditional Create: Build gear ratios for speed
+Water Wheels → Large Cog → Small Cog → Faster Machine
 
-1. Delete the subproject folder. For example, delete `MultiLoader-Template/forge`.
-2. Remove the project from `settings.gradle`. For example, remove `include("forge")`. 
+# IvaldiOS: Configure performance settings  
+Performance Level: 200%    # 2x speed
+SU Consumption: 400%       # 4x power usage
+```
+
+**Core Machines:**
+- **Smart Furnaces**: Configurable speed vs power consumption
+- **Adaptive Processors**: Auto-adjust based on throughput needs
+- **Resource Analyzers**: Monitor and optimize power efficiency
+- **Builder**: A block adding building functionality with multiblock structures.
+
+### **DraupnirTech** - Advanced Energy
+*Nuclear and high-tech power systems*
+
+**Advanced Energy Generation:**
+- **Nuclear Reactors**: Massive WE generation with safety mechanics
+- **Power Distribution**: Long-range energy transmission
+
+
+### Tech Mod structure
+**LibWyfy** (required foundation)
+**IvaldiOS** for smart automation
+**DraupnirTech** Gregified obscure nuclear power
+
+### Your First Smart Machine
+
+**Traditional Create Approach:**
+```
+Build Smeltery → Connect to Create network → 
+```
+
+**IvaldiOS Approach:**
+```nix
+// Write an expression file
+{
+  description: "Post mining ore processing";
+  
+  inputs = {
+    oak_chest = {
+      items = {
+        raw_iron_ore = {};
+        raw_steak = {};
+        sand = {};
+      };
+    };
+    advanced_fluid_tank = {
+      fluid = {
+        lava = {};
+      };
+    };
+    catalytic_bushing = {
+      rpm = 64;
+    };
+    
+  };
+  
+  outputs = {
+    iron_chest = {
+      items = {
+        iron_ingot = {};
+        cooked_steak = {};
+        glass = {};
+      };
+    };
+  };
+  
+  performance = {
+    
+  };
+}
+```
+
+The machine automatically:
+- Calculates optimal SU consumption (384 SU for 150% performance)
+- Adjusts internal timing without mechanical changes
+- Provides feedback through Create's stress system
+
+## 🎮 Player Experience
+
+### Power Management Philosophy
+
+**IvaldiOS eliminates the tedium of mechanical power scaling:**
+
+**New Way**: *"I need my smeltery to run faster... let me increase the performance setting to 200%"*
+
+**Benefits:**
+- **Flexibility**: Adjust performance on-the-fly
+- **Efficiency**: No mechanical rebuilds required
+- **Scalability**: Easy to upgrade existing setups
+- **Integration**: Works seamlessly with existing Create networks
+
+### Example Progression
+
+**Early Game:**
+```yaml
+Basic Smeltery:
+  Performance: 100% (standard speed)
+  SU Usage: 256 SU
+  Requirements: 2 water wheels
+```
+
+**Mid Game:**  
+```yaml
+Upgraded Smeltery:
+  Performance: 200% (double speed)
+  SU Usage: 512 SU  
+  Requirements: 4 water wheels (or better generator)
+```
+
+**Late Game:**
+```yaml
+Optimized Smeltery:
+  Performance: 300% (triple speed)
+  SU Usage: 768 SU
+  Requirements: DraupnirTech reactor
+  Features: Auto-throttling, efficiency monitoring
+```
+
+## 🔧 Technical Design
+
+### Energy System Architecture
+
+**LibWyfy Energy Conversion:**
+```java
+// SU is the primary resource (like Create)
+base_we = available_su * SU_TO_WE_RATIO;
+
+// Performance settings affect consumption
+performance_multiplier = user_setting / 100.0;  // 200% = 2.0x
+required_we = base_consumption * performance_multiplier;
+
+// Machine operates if sufficient power
+can_operate = base_we >= required_we;
+```
+
+**IvaldiOS Machine Control:**
+```java
+// Player sets desired performance level
+public void setPerformanceLevel(int percentage) {
+    this.performanceLevel = percentage;
+    this.suConsumption = baseSU * (percentage / 100.0);
+    this.processingSpeed = baseSpeed * (percentage / 100.0);
+}
+```
+
+### Cross-Platform Compatibility
+
+Built with **multiloader architecture**:
+- **Fabric**: Lightweight, modern
+- **NeoForge**: Feature-rich, stable  
+- **Forge**: Legacy compatibility
+
+## 🏗️ Development Status
+
+### LibWyfy (Foundation) ✅
+- [x] Basic energy system framework
+- [x] Constants and initialization
+- [x] Platform abstraction layer
+- [ ] Expression language compiler
+- [ ] Multiblock registry system
+
+### IvaldiOS (Automation) 🚧
+- [ ] Smart machine base classes
+- [ ] Performance configuration system
+- [ ] Dynamic SU consumption
+- [ ] Expression-driven automation
+- [ ] GUI for machine settings
+
+### DraupnirTech (Nuclear) 📋
+- [ ] Reactor framework
+- [ ] Advanced energy generation
+- [ ] Safety systems
+- [ ] Power distribution network
+
+## 🎯 Goals
+
+### Short Term
+1. **Complete LibWyfy energy system**
+2. **Implement basic IvaldiOS machine** with performance controls
+3. **Create comprehensive documentation**
+
+### Long Term  
+1. **Full expression language** for declarative automation
+2. **Advanced nuclear systems** in DraupnirTech
+3. **Integration with popular Create addons**
+4. **Community-driven machine definitions**
+
+## 🤝 Contributing
+
+- **Reproducible builds** via Nix flakes
+- **Cross-platform testing** on all supported loaders  
+- **Expression-driven configuration** instead of imperative code
+
+### Development Setup
+```bash
+# Clone and enter Nix shell
+git clone https://github.com/wyatt/wyfy-suite
+cd wyfy-suite
+nix develop
+
+# Build all modules  
+./gradlew build
+
+# Test specific platform
+./gradlew :libwyfy:fabric:build
+```
+
+## 📄 License
+
+MIT License - See LICENSE file for details.
+
+## 🌟 Inspiration
+
+*"If NixOS is declarative system configuration, then Wyfy Suite is declarative Minecraft automation."*
+
+**Influenced by:**
+- **NixOS**: Declarative system management
+- **Create**: Mechanical engineering in Minecraft  
+- **Applied Energistics**: Intelligent automation
+- **Norse Mythology**: Naming conventions and theming
