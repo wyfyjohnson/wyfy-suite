@@ -1,6 +1,6 @@
 package dev.wyfy.libwyfy.platform;
 
-import dev.wyfy.libwyfy.LibWyfy;
+import dev.wyfy.libwyfy.Constants;
 import dev.wyfy.libwyfy.platform.services.IPlatformHelper;
 import java.util.ServiceLoader;
 
@@ -26,7 +26,7 @@ public class Services {
                     "Failed to load service for " + clazz.getName()
                 )
             );
-        LibWyfy.LOG.debug("Loaded {} for service {}", loadedService, clazz);
+        Constants.LOG.debug("Loaded {} for service {}", loadedService, clazz);
         return loadedService;
     }
 }

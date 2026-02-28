@@ -3,7 +3,7 @@ package dev.wyfy.libwyfy;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 
-@Mod(LibWyfy.MOD_ID)
+@Mod(Constants.MOD_ID)
 public class LibWyfyNeoForge {
 
     public LibWyfyNeoForge(IEventBus eventBus) {
@@ -12,7 +12,7 @@ public class LibWyfyNeoForge {
         // project.
 
         // Use NeoForge to bootstrap the Common mod.
-        LibWyfy.LOG.info("Hello NeoForge world!");
-        CommonClass.init();
+        Constants.LOG.info("Hello NeoForge world!");
+        LibWyfy.init();
     }
 }

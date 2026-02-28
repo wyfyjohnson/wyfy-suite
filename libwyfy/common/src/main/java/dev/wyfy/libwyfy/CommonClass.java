@@ -8,7 +8,7 @@ public class CommonClass {
     // write the majority of your code here and load it from your loader specific projects. This example has some
     // code that gets invoked by the entry point of the loader specific projects.
     public static void init() {
-        LibWyfy.LOG.info(
+        Constants.LOG.info(
             "LibWyfy initialized on {}!",
             Services.PLATFORM.getPlatformName()
         );
