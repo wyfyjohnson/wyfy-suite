@@ -15,11 +15,20 @@
     flake-utils.lib.eachDefaultSystem (
       system:
       let
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfreePredicate =
+            pkg:
+            builtins.elem (pkg.pname or "") [
+              "claude-code"
+            ];
+        };
       in
       {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
+            claude-code
+            claude-monitor
             jdk21
             gradle
             git

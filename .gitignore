@@ -27,3 +27,4 @@ runs
 CLAUDE.md
 docs/
 .claude/
+.direnv/*

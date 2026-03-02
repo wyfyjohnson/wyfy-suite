@@ -1,6 +1,5 @@
 package dev.wyfy.ivaldios.platform;
 
-import dev.wyfy.ivaldios.IvaldiOS;
 import dev.wyfy.ivaldios.platform.services.IPlatformHelper;
 import java.util.ServiceLoader;
 
