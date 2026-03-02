@@ -1,15 +1,15 @@
-package dev.wyfy.libwyfy;
+package dev.wyfy.ivaldios;
 
-import dev.wyfy.libwyfy.platform.Services;
+import dev.wyfy.ivaldios.platform.Services;
 
-public class CommonClass {
+public class IvaldiOS {
 
     // The loader specific projects are able to import and use any code from the common project. This allows you to
     // write the majority of your code here and load it from your loader specific projects. This example has some
     // code that gets invoked by the entry point of the loader specific projects.
     public static void init() {
         Constants.LOG.info(
-            "LibWyfy initialized on {}!",
+            "IvaldiOS has been initialized on {}!",
             Services.PLATFORM.getPlatformName()
         );
     }
