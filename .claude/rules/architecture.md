@@ -12,7 +12,7 @@ LibWyfy owns:
 - GUI framework (terminal text editor, schematic preview, upgrade slot component, Ponder integration)
 - Recipe and crafting infrastructure
 - Cross-node import resolution and dimensional link system
-- Flake file I/O and directory management
+- Leaf file I/O and directory management
 
 IvaldiOS owns:
 - Concrete module block implementations (grinder, smelter, inventory interface, fluid interface, drive bay, builder, generator, SU interface, dimensional link, crafting)
@@ -72,8 +72,6 @@ Each registered module declares:
 - What language functions/arguments it exposes
 - What capability type it provides (PROCESSING, STORAGE, LOGISTICS, POWER, BUILD, LINK)
 
-## Energy
+## Energy Framework — BE (Baryonic Energy)
 
-- Internal unit name TBD — use `IEnergy` interface and `EnergyUnit` placeholder throughout until named
-- Never import RF/FE energy types into common code
-- Create SU conversion factor is configurable, not hardcoded
+BE (Baryonic Energy) is the internal power unit shared across LibWyfy, IvaldiOS, and DraupnirTech. It is a plasma-based energy — the fourth state of matter. It is not transferred over cables or pipes. It is produced, stored, and consumed entirely within the multiblock structure that generates it. LibWyfy owns all contracts and runtime logic. IvaldiOS and DraupnirTech own all implementations.

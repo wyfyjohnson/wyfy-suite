@@ -25,16 +25,12 @@ The foundation everything else builds on. No gameplay content of its own — pur
 - Expression compiler and evaluator (see Language section)
 
 ### Power Infrastructure
-- Internal energy unit (distinct from RF/FE — thematic, not generic, name TBD)
-- Always-on idle power draw that scales with installed modules
 - Active job power spiking above idle baseline
 - Energy storage API with insertable battery item support for capacity expansion
 - Create SU/RPM bridge — bidirectional SU interface block that exports or imports depending on the node's current power state
 
 ### Storage Infrastructure
 - Drive/disk item system for capacity scaling (no enormous storage blocks)
-- Typed buffer blocks queryable by the expression language natively
-- Network query API — expressions can read and write storage directly
 
 ### Item and Fluid Handling
 - Generic interface blocks compatible with Create chutes, funnels, and tunnels
@@ -43,8 +39,7 @@ The foundation everything else builds on. No gameplay content of its own — pur
 
 ### GUI Framework
 - Terminal text editor component (reusable across all mods in the suite)
-- In-world schematic preview system
-- Generic upgrade slot GUI component for modules
+- In-world schematic preview system when using builder
 - Compiler error display in terminal
 - Ponder integration — in-game animated scene support for all content mods in the suite. Ponder is pulled in as a standalone library dependency so Create is not required to use it. All major mechanics get dedicated Ponder scenes. Content mods register their own scenes through LibWyfy's Ponder API.
 

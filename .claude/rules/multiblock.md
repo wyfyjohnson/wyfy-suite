@@ -2,7 +2,7 @@
 
 ## Structure
 
-- The controller block is the identity anchor — it holds the node name and flake reference
+- The controller block is the identity anchor — it holds the node name and leaf reference
 - Modules are additional blocks for the multiblock
 - Capacity scales through items inserted into module slots, not by adding more blocks
 
@@ -15,7 +15,7 @@
 ## Naming
 
 - The name given to the structure is available on the player's team network, working with FTB teams and other mods like it. So players can be part of the same team and have access to the named structures.
-- Name is shared between: the physical controller block, the flake file on disk, and the import identifier
+- Name is shared between: the physical controller block, the leaf file on disk, and the import identifier
 
 ## Upgrades
 
@@ -34,14 +34,14 @@ Each core machine must have a UI:
 - `ItemIOBlock` - a block that can push/pull items from an inventory, works with Create packagers, inventory interface/fluid interface
 - `BasicGenerator` — Generates energy used by the machine/multiblock
 - `BushingBlock` - a block that accepts and sends stress units. When receiving SU, this block generates power to be used for the power mechanics, processing, building, etc.
-- `Buider` — builder block, allows visualization, a flake will be build instructions, very similar to schematics and the cannon with Create.
+- `Buider` — builder block, allows visualization, a leaf will be build instructions, very similar to schematics and the cannon with Create.
 - `` — a block that allows this multiblock structure to interact with another multiblock structures, dimensional link
 - `` - a block that allows this multiblock structure to interact with another multiblock structure within the same dimension
 - `PanelBlock` - a block that adds to the multiblock structure for aesthetics and to extend the multiblock structure  
 - `MechanicalBushing` - a block
 
 - Augment machine:
-- `BaseTransformer` - a block with a UI and inventory, the model has a different appearance based on the amount of upgrades in it. This block being part of multiblock allows for processing blocks to work at an accelerated rate, must be configured via the coding language being developed. This is where a "flake" like thing be loaded.
+- `BaseTransformer` - a block with a UI and inventory, the model has a different appearance based on the amount of upgrades in it. This block being part of multiblock allows for processing blocks to work at an accelerated rate, must be configured via the coding language being developed. This is where a leaf can be loaded.
 ## Energy Framework — BE (Baryonic Energy)
 
 ### Overview
@@ -163,13 +163,13 @@ Vessels store surplus plasma and cover deficits automatically each tick. Stored 
 Defined in each BlockEntity class inside IvaldiOS or DraupnirTech. LibWyfy never hard-codes these values.
 
 | Machine | Maintenance (BE/tick) | Active Draw (BE/tick) | Ionization Cost (BE/op) | Tier |
-|---|---|---|---|---|
-| MechanizedGrinder | 2 | 8 | 10 | T1 — 1.0x |
-| MechanizedFurnace | 1 | 6 | 8 | T1 — 1.0x |
-| AlloyForge | 3 | 12 | 16 | T2 — 2.0x |
-| FabricationChamber | 4 | 16 | 24 | T2 — 2.0x |
-| BaseTransformer | 2 | 10 | flake-defined | upgrade-scaled |
-| StorageController | 1 | 0 | 0 | passive |
+|---|---|---|-------------------------|---|
+| MechanizedGrinder | 2 | 8 | 10                      | T1 — 1.0x |
+| MechanizedFurnace | 1 | 6 | 8                       | T1 — 1.0x |
+| AlloyForge | 3 | 12 | 16                      | T2 — 2.0x |
+| FabricationChamber | 4 | 16 | 24                      | T2 — 2.0x |
+| BaseTransformer | 2 | 10 | leaf-defined            | upgrade-scaled |
+| StorageController | 1 | 0 | 0                       | passive |
 
 ---
 
@@ -213,7 +213,7 @@ Client sync payload contains only: fluxOutput, demand, fieldState, name. The ful
       IBEBuffer              — containment vessel contract
       BENetwork              — per-multiblock network runtime
       BENetworkManager       — global per-dimension registry
-      BorkEngine             — ionize(), timeToComplete(), ionizationCost()
+      WorkEngine             — ionize(), timeToComplete(), ionizationCost()
       IUpgradeItem           — upgrade item contract
       UpgradeSlotContainer   — generic upgrade slot manager
 
